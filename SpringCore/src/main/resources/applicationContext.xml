@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="jsonMapper" class="com.epam.json.JsonMapper"/>
+
+    <bean id="paginator"
+          class="com.epam.util.Paginator"
+          p:warnMessage="Invalid data passed for pagination: page size = {}, page number = {}"/>
+
+    <bean id="idGenerator" class="com.epam.util.IdGenerator"/>
+
+    <bean class="com.epam.postprocessor.BindStaticDataAnnotationBeanPostProcessor"
+          p:startInfoMessage="Found a field annotated with statically data binding. Started binding..."
+          p:finishInfoMessage="Successfully finished binding"
+          p:jsonMapper-ref="jsonMapper"
+          p:generator-ref="idGenerator"
+          autowire="no"/>
+
+    <bean id="eventDao" class="com.epam.dao.EventDao" autowire="no">
+        <property name="paginator" ref="paginator"/>
+        <property name="generator" ref="idGenerator"/>
+    </bean>
+
+    <bean id="ticketDao" class="com.epam.dao.TicketDao" autowire="no">
+        <property name="paginator" ref="paginator"/>
+        <property name="generator" ref="idGenerator"/>
+    </bean>
+
+    <bean id="userDao" class="com.epam.dao.UserDao" autowire="no">
+        <property name="paginator" ref="paginator"/>
+        <property name="generator" ref="idGenerator"/>
+    </bean>
+
+    <bean id="eventService" class="com.epam.service.EventService" autowire="constructor"/>
+
+    <bean id="userService" class="com.epam.service.UserService" autowire="constructor"/>
+
+    <bean id="ticketService" class="com.epam.service.TicketService" autowire="constructor"/>
+
+    <bean id="bookingFacade" class="com.epam.facade.BookingFacadeImpl" autowire="no">
+        <constructor-arg ref="eventService"/>
+        <constructor-arg ref="ticketService"/>
+        <constructor-arg ref="userService"/>
+    </bean>
+
+</beans>
