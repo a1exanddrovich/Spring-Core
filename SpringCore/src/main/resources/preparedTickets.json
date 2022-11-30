@@ -1,0 +1,32 @@
+[
+  {
+    "userId": 1,
+    "eventId": 1,
+    "category": "PREMIUM",
+    "place": 2
+  },
+  {
+    "userId": 2,
+    "eventId": 2,
+    "category": "BAR",
+    "place": 1
+  },
+  {
+    "userId": 4,
+    "eventId": 1,
+    "category": "PREMIUM",
+    "place": 3
+  },
+  {
+    "userId": 3,
+    "eventId": 3,
+    "category": "STANDARD",
+    "place": 1
+  },
+  {
+    "userId": 4,
+    "eventId": 4,
+    "category": "STANDARD",
+    "place": 5
+  }
+]
