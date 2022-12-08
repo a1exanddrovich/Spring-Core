@@ -25,7 +25,7 @@ public class UserDao {
     private IdGenerator generator;
 
     public Optional<User> findById(long userId) {
-        LOG.info("Retrieving a user by {} id...", userId);
+        LOG.debug("Retrieving a user by {} id...", userId);
         return Optional.ofNullable(users.get(userId));
     }
 
