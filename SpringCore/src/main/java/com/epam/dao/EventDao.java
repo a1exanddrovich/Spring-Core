@@ -30,7 +30,7 @@ public class EventDao {
     }
 
     public List<Event> getEventsByTitle(String title, int pageSize, int pageNumber) {
-        LOG.info("Retrieving events by {}... Passed page size - {}, page number - {}", title, pageSize, pageNumber);
+        LOG.debug("Retrieving events by {}... Passed page size - {}, page number - {}", title, pageSize, pageNumber);
         return filter(event -> event.getTitle().contains(title), pageSize, pageNumber);
     }
 
